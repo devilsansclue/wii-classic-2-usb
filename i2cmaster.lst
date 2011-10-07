@@ -1,0 +1,280 @@
+   1               		.file	"i2cmaster.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               		.section	.text.i2c_init,"ax",@progbits
+  17               	.global	i2c_init
+  19               	i2c_init:
+  20               	.LFB2:
+  21               	.LSM0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24               	.LSM1:
+  25 0000 1092 B900 		sts 185,__zero_reg__
+  26               	.LSM2:
+  27 0004 88E4      		ldi r24,lo8(72)
+  28 0006 8093 B800 		sts 184,r24
+  29               	/* epilogue start */
+  30               	.LSM3:
+  31 000a 0895      		ret
+  32               	.LFE2:
+  34               		.section	.text.i2c_start,"ax",@progbits
+  35               	.global	i2c_start
+  37               	i2c_start:
+  38               	.LFB3:
+  39               	.LSM4:
+  40               	.LVL0:
+  41               	/* prologue: function */
+  42               	/* frame size = 0 */
+  43 0000 982F      		mov r25,r24
+  44               	.LSM5:
+  45 0002 84EA      		ldi r24,lo8(-92)
+  46               	.LVL1:
+  47 0004 8093 BC00 		sts 188,r24
+  48               	.L4:
+  49               	.LSM6:
+  50 0008 8091 BC00 		lds r24,188
+  51 000c 87FF      		sbrs r24,7
+  52 000e 00C0      		rjmp .L4
+  53               	.LSM7:
+  54 0010 8091 B900 		lds r24,185
+  55               	.LVL2:
+  56 0014 887F      		andi r24,lo8(-8)
+  57               	.LSM8:
+  58 0016 8830      		cpi r24,lo8(8)
+  59 0018 01F0      		breq .L5
+  60 001a 8031      		cpi r24,lo8(16)
+  61 001c 01F0      		breq .L5
+  62 001e 81E0      		ldi r24,lo8(1)
+  63               	.LVL3:
+  64 0020 0895      		ret
+  65               	.LVL4:
+  66               	.L5:
+  67               	.LSM9:
+  68 0022 9093 BB00 		sts 187,r25
+  69               	.LSM10:
+  70 0026 84E8      		ldi r24,lo8(-124)
+  71               	.LVL5:
+  72 0028 8093 BC00 		sts 188,r24
+  73               	.L7:
+  74               	.LSM11:
+  75 002c 8091 BC00 		lds r24,188
+  76 0030 87FF      		sbrs r24,7
+  77 0032 00C0      		rjmp .L7
+  78               	.LSM12:
+  79 0034 9091 B900 		lds r25,185
+  80               	.LVL6:
+  81 0038 987F      		andi r25,lo8(-8)
+  82               	.LSM13:
+  83 003a 9831      		cpi r25,lo8(24)
+  84 003c 01F4      		brne .L8
+  85 003e 80E0      		ldi r24,lo8(0)
+  86 0040 0895      		ret
+  87               	.L8:
+  88 0042 80E0      		ldi r24,lo8(0)
+  89 0044 9034      		cpi r25,lo8(64)
+  90 0046 01F0      		breq .L6
+  91 0048 81E0      		ldi r24,lo8(1)
+  92               	.L6:
+  93               	.LSM14:
+  94 004a 0895      		ret
+  95               	.LFE3:
+  97               		.section	.text.i2c_start_wait,"ax",@progbits
+  98               	.global	i2c_start_wait
+ 100               	i2c_start_wait:
+ 101               	.LFB4:
+ 102               	.LSM15:
+ 103               	.LVL7:
+ 104               	/* prologue: function */
+ 105               	/* frame size = 0 */
+ 106 0000 982F      		mov r25,r24
+ 107               	.LSM16:
+ 108 0002 44EA      		ldi r20,lo8(-92)
+ 109               	.LSM17:
+ 110 0004 34E8      		ldi r19,lo8(-124)
+ 111               	.LSM18:
+ 112 0006 24E9      		ldi r18,lo8(-108)
+ 113               	.LVL8:
+ 114               	.L27:
+ 115               	.LSM19:
+ 116 0008 4093 BC00 		sts 188,r20
+ 117               	.L14:
+ 118               	.LSM20:
+ 119 000c 8091 BC00 		lds r24,188
+ 120               	.LVL9:
+ 121 0010 87FF      		sbrs r24,7
+ 122 0012 00C0      		rjmp .L14
+ 123               	.LSM21:
+ 124 0014 8091 B900 		lds r24,185
+ 125               	.LVL10:
+ 126 0018 887F      		andi r24,lo8(-8)
+ 127               	.LSM22:
+ 128 001a 8830      		cpi r24,lo8(8)
+ 129 001c 01F0      		breq .L15
+ 130 001e 8031      		cpi r24,lo8(16)
+ 131 0020 01F4      		brne .L27
+ 132               	.L15:
+ 133               	.LSM23:
+ 134 0022 9093 BB00 		sts 187,r25
+ 135               	.LSM24:
+ 136 0026 3093 BC00 		sts 188,r19
+ 137               	.L17:
+ 138               	.LSM25:
+ 139 002a 8091 BC00 		lds r24,188
+ 140               	.LVL11:
+ 141 002e 87FF      		sbrs r24,7
+ 142 0030 00C0      		rjmp .L17
+ 143               	.LSM26:
+ 144 0032 8091 B900 		lds r24,185
+ 145               	.LVL12:
+ 146 0036 887F      		andi r24,lo8(-8)
+ 147               	.LSM27:
+ 148 0038 8032      		cpi r24,lo8(32)
+ 149 003a 01F0      		breq .L18
+ 150 003c 8835      		cpi r24,lo8(88)
+ 151 003e 01F4      		brne .L21
+ 152               	.L18:
+ 153               	.LSM28:
+ 154 0040 2093 BC00 		sts 188,r18
+ 155               	.L20:
+ 156               	.LSM29:
+ 157 0044 8091 BC00 		lds r24,188
+ 158               	.LVL13:
+ 159 0048 84FD      		sbrc r24,4
+ 160 004a 00C0      		rjmp .L20
+ 161 004c 00C0      		rjmp .L27
+ 162               	.LVL14:
+ 163               	.L21:
+ 164 004e 0895      		ret
+ 165               	.LFE4:
+ 167               		.section	.text.i2c_rep_start,"ax",@progbits
+ 168               	.global	i2c_rep_start
+ 170               	i2c_rep_start:
+ 171               	.LFB5:
+ 172               	.LSM30:
+ 173               	.LVL15:
+ 174               	/* prologue: function */
+ 175               	/* frame size = 0 */
+ 176               	.LSM31:
+ 177 0000 0E94 0000 		call i2c_start
+ 178               	.LVL16:
+ 179               	/* epilogue start */
+ 180               	.LSM32:
+ 181 0004 0895      		ret
+ 182               	.LFE5:
+ 184               		.section	.text.i2c_stop,"ax",@progbits
+ 185               	.global	i2c_stop
+ 187               	i2c_stop:
+ 188               	.LFB6:
+ 189               	.LSM33:
+ 190               	/* prologue: function */
+ 191               	/* frame size = 0 */
+ 192               	.LSM34:
+ 193 0000 84E9      		ldi r24,lo8(-108)
+ 194 0002 8093 BC00 		sts 188,r24
+ 195               	.L31:
+ 196               	.LSM35:
+ 197 0006 8091 BC00 		lds r24,188
+ 198 000a 84FD      		sbrc r24,4
+ 199 000c 00C0      		rjmp .L31
+ 200               	/* epilogue start */
+ 201               	.LSM36:
+ 202 000e 0895      		ret
+ 203               	.LFE6:
+ 205               		.section	.text.i2c_write,"ax",@progbits
+ 206               	.global	i2c_write
+ 208               	i2c_write:
+ 209               	.LFB7:
+ 210               	.LSM37:
+ 211               	.LVL17:
+ 212               	/* prologue: function */
+ 213               	/* frame size = 0 */
+ 214               	.LSM38:
+ 215 0000 8093 BB00 		sts 187,r24
+ 216               	.LSM39:
+ 217 0004 84E8      		ldi r24,lo8(-124)
+ 218               	.LVL18:
+ 219 0006 8093 BC00 		sts 188,r24
+ 220               	.L35:
+ 221               	.LSM40:
+ 222 000a 8091 BC00 		lds r24,188
+ 223 000e 87FF      		sbrs r24,7
+ 224 0010 00C0      		rjmp .L35
+ 225               	.LSM41:
+ 226 0012 8091 B900 		lds r24,185
+ 227 0016 90E0      		ldi r25,lo8(0)
+ 228 0018 887F      		andi r24,lo8(-8)
+ 229 001a 8832      		cpi r24,lo8(40)
+ 230 001c 01F0      		breq .L36
+ 231 001e 91E0      		ldi r25,lo8(1)
+ 232               	.L36:
+ 233               	.LSM42:
+ 234 0020 892F      		mov r24,r25
+ 235               	/* epilogue start */
+ 236 0022 0895      		ret
+ 237               	.LFE7:
+ 239               		.section	.text.i2c_readAck,"ax",@progbits
+ 240               	.global	i2c_readAck
+ 242               	i2c_readAck:
+ 243               	.LFB8:
+ 244               	.LSM43:
+ 245               	/* prologue: function */
+ 246               	/* frame size = 0 */
+ 247               	.LSM44:
+ 248 0000 84EC      		ldi r24,lo8(-60)
+ 249 0002 8093 BC00 		sts 188,r24
+ 250               	.L40:
+ 251               	.LSM45:
+ 252 0006 8091 BC00 		lds r24,188
+ 253 000a 87FF      		sbrs r24,7
+ 254 000c 00C0      		rjmp .L40
+ 255               	.LSM46:
+ 256 000e 8091 BB00 		lds r24,187
+ 257               	/* epilogue start */
+ 258               	.LSM47:
+ 259 0012 0895      		ret
+ 260               	.LFE8:
+ 262               		.section	.text.i2c_readNak,"ax",@progbits
+ 263               	.global	i2c_readNak
+ 265               	i2c_readNak:
+ 266               	.LFB9:
+ 267               	.LSM48:
+ 268               	/* prologue: function */
+ 269               	/* frame size = 0 */
+ 270               	.LSM49:
+ 271 0000 84E8      		ldi r24,lo8(-124)
+ 272 0002 8093 BC00 		sts 188,r24
+ 273               	.L44:
+ 274               	.LSM50:
+ 275 0006 8091 BC00 		lds r24,188
+ 276 000a 87FF      		sbrs r24,7
+ 277 000c 00C0      		rjmp .L44
+ 278               	.LSM51:
+ 279 000e 8091 BB00 		lds r24,187
+ 280               	/* epilogue start */
+ 281               	.LSM52:
+ 282 0012 0895      		ret
+ 283               	.LFE9:
+ 365               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 i2cmaster.c
+     /tmp/cc71RdJF.s:2      *ABS*:000000000000003f __SREG__
+     /tmp/cc71RdJF.s:3      *ABS*:000000000000003e __SP_H__
+     /tmp/cc71RdJF.s:4      *ABS*:000000000000003d __SP_L__
+     /tmp/cc71RdJF.s:5      *ABS*:0000000000000034 __CCP__
+     /tmp/cc71RdJF.s:6      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cc71RdJF.s:7      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cc71RdJF.s:19     .text.i2c_init:0000000000000000 i2c_init
+     /tmp/cc71RdJF.s:37     .text.i2c_start:0000000000000000 i2c_start
+     /tmp/cc71RdJF.s:100    .text.i2c_start_wait:0000000000000000 i2c_start_wait
+     /tmp/cc71RdJF.s:170    .text.i2c_rep_start:0000000000000000 i2c_rep_start
+     /tmp/cc71RdJF.s:187    .text.i2c_stop:0000000000000000 i2c_stop
+     /tmp/cc71RdJF.s:208    .text.i2c_write:0000000000000000 i2c_write
+     /tmp/cc71RdJF.s:242    .text.i2c_readAck:0000000000000000 i2c_readAck
+     /tmp/cc71RdJF.s:265    .text.i2c_readNak:0000000000000000 i2c_readNak
+
+NO UNDEFINED SYMBOLS
